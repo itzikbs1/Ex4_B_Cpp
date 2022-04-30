@@ -42,12 +42,17 @@ using namespace coup;
     // }
 
     string Game::winner(Game const &game){
-        string winn = game.get_players_name()[0];
+        string winn;
+        int Participants=0;
         for (size_t i = 1; i < game.get_players_name().size(); i++)
         {
-            /* code */
+            if(*game.get_players_name()[i].begin() != '-'){
+                Participants++;
+                winn = game.get_players_name()[i];
+            }
+        }if(Participants>1){
+            throw runtime_error("the game still running");
         }
-        
         return winn;
     }
     void Game::add_player(string &n){
