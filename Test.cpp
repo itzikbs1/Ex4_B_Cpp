@@ -18,18 +18,19 @@ using namespace std;
 
 
 
-    Game game_1{};
-
-	/* This player drew the "Duke" card, his name is Moshe
-	and he is a player in game_1 */
-	Duke duke{game_1, "Moshe"};
-	Assassin assassin{game_1, "Yossi"};
-	Ambassador ambassador{game_1, "Meirav"};
-	Captain captain{game_1, "Reut"};
-	Contessa contessa{game_1, "Gilad"};
 
 
     TEST_CASE("Good input"){
+        Game game_1{};
+
+        /* This player drew the "Duke" card, his name is Moshe
+        and he is a player in game_1 */
+        Duke duke{game_1, "Moshe"};
+        Assassin assassin{game_1, "Yossi"};
+        Ambassador ambassador{game_1, "Meirav"};
+        Captain captain{game_1, "Reut"};
+        Contessa contessa{game_1, "Gilad"};
+
         vector<string> players = game_1.players();
         CHECK(players.size() == 5);
         CHECK(game_1.turn() == "Moshe");
@@ -61,6 +62,16 @@ using namespace std;
         // CHECK_THROWS(duke.coins() == 0); 
     }
     TEST_CASE("Bad input"){
+        Game game_1{};
+
+        /* This player drew the "Duke" card, his name is Moshe
+        and he is a player in game_1 */
+        Duke duke{game_1, "Moshe"};
+        Assassin assassin{game_1, "Yossi"};
+        Ambassador ambassador{game_1, "Meirav"};
+        Captain captain{game_1, "Reut"};
+        Contessa contessa{game_1, "Gilad"};
+
         CHECK_THROWS(assassin.income());
         CHECK_THROWS(ambassador.foreign_aid());
         CHECK_THROWS(captain.income());

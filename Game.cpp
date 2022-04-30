@@ -24,50 +24,39 @@ using namespace coup;
 
     // }
     string Game::turn(){
-        // cout<<"16 game.cpp"<<endl;
-        // cout<<"current_player "<<this->current_player<<endl;
-        // cout<<"this->players_name.at((current_player%this->players_name.size()))"<<this->players_name.at((current_player%this->players_name.size()))<<endl;
-        // cout<<"this->current_player "<<this->current_player<<endl;
-        // cout<<"this->players_name.size() "<<this->players_name.size()<<endl;
         string player_name = this->players_name.at((this->current_player%this->players_name.size()));
-        // cout<<"pla game.cpp "<<player_name<<endl;
-        // k++;
-        // cout<<"32!"<<endl;
         return player_name;
     }
     vector<string> Game::players(){
         vector<string> now_play;
         for (size_t i = 0; i < this->players_name.size(); i++)
         {
-            // cout<<"players_name[i]"<<players_name[i][0]<<endl;
-            // cout<<"-"<<endl;
             if(players_name[i][0] != '-'){
                 now_play.push_back(players_name[i]);
             }
         }
-        // return this->players_name;
         return now_play;
     }
     // ostream& operator<<(ostream& os,const Game &game){
     //     return os;
     // }
 
-    string Game::winner(Game game){
-        return "";
+    string Game::winner(Game const &game){
+        string winn = game.get_players_name()[0];
+        for (size_t i = 1; i < game.get_players_name().size(); i++)
+        {
+            /* code */
+        }
+        
+        return winn;
     }
     void Game::add_player(string &n){
-        // cout<<"33G.c"<<endl;
-        // cout<<"sfd"<<n<<endl;
-        // cout<<"plasdsa"<<players_name[0]<<endl;
         players_name.push_back(n);
     }
-    unsigned long Game::get_current_player(){
+    unsigned long Game::get_current_player() const{
         return this->current_player;
     }
-    // map<string, string> Game::get_players_dismissed(){
-    //     return players_dismissed;
-    // }
-    vector<string> Game::get_players_name(){
+    vector<string> Game::get_players_name() const{
         return players_name;
     }
     void Game::set_current_player(){
@@ -79,8 +68,7 @@ using namespace coup;
     }
 
     void Game::remove_player(string const &player){
-        // int k=0;
-        // this->players_name.erase(remove(this->players_name.begin(), this->players_name.end(), player), this->players_name.end());
+
         for (size_t i = 0; i < this->players_name.size(); i++)
         {
             if(players_name[i] == player){
@@ -89,9 +77,3 @@ using namespace coup;
         }
         
     }
-    // string Game::role(){
-    //     return "";
-    // }
-    // int Game::coins(){
-    //     return 0;
-    // }

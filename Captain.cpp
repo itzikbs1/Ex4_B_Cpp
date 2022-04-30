@@ -7,14 +7,10 @@
 using namespace std;
 using namespace coup;
 
-    // Captain::Captain(Game game, string name){
-    //     Captain::_name = move(name);
-    //     Captain::_game = game;
-    // }
+
     void Captain::block(Player &player){
         int stolen = 0;
-        // if(this->_name == this->_game.turn()){
-            if (player.get_last_operation() == "steal" && player.get_player_role() == "captain")
+            if (player.get_last_operation() == "steal" && player.get_player_role() == "captain" && player.get_name() != this->_game.turn())
             {
                 stolen = player.get_coins_player() - player.get_money_before_operation();
                 player.set_coins_player(-stolen);
@@ -30,9 +26,10 @@ using namespace coup;
         }else{
             throw runtime_error("its invalid block you cant do it " + this->_name);
         }
+        this->last_operation = "block";
     }
     void Captain::steal(Player &player){
-        if(this->_name == this->_game.turn()){
+        if(this->_name == this->_game.turn() && this->coins_player<ten){
             this->money_before_operation = this->coins_player;
             if(player.get_coins_player() == 1){
                 player.set_coins_player(-1);
@@ -49,4 +46,5 @@ using namespace coup;
         }else{
             throw runtime_error("its not " + this->_name + " turn");
         }
+        this->last_operation = "steal";
     }

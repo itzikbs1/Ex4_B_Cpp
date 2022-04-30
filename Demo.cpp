@@ -76,8 +76,8 @@ int main() {
 		std::cerr << e.what() << '\n';
 	}
 
-	cout << "duke.coins() "<< duke.coins() << endl; // prints 2
-	cout << "assassin.coins()1 " <<assassin.coins() << endl; // prints 3
+	cout << duke.coins() << endl; // prints 2
+	cout << assassin.coins() << endl; // prints 3
 
 	// throws exception, the last operation assassin performed
 	// is foreign aid, which cannot be blocked by contessa
@@ -89,16 +89,18 @@ int main() {
 	}
 
 	duke.block(assassin);
-	cout << "assassin.coins()2 " <<assassin.coins() << endl; // prints 1
+	cout << assassin.coins() << endl; // prints 1
 
 	ambassador.transfer(duke, assassin); //transfers 1 coin from duke to assassin
 	captain.foreign_aid();
 	contessa.foreign_aid();
+
 	duke.tax();
 	assassin.income();
 	ambassador.foreign_aid();
 	captain.steal(contessa);
 	contessa.foreign_aid();
+
 	duke.tax();
 	// no exception, assassin can coup with only 3 coins
 	assassin.coup(duke);
@@ -115,12 +117,9 @@ int main() {
 	{
 		cout << name << endl;
 	}
+
 	contessa.block(assassin);
-	// cout<<"duke.get_coins_player()"<<duke.get_coins_player()<<endl;
-	// cout<<"assassin.get_coins_player()"<<assassin.get_coins_player()<<endl;
-	// cout<<"ambassdor.get_coins_player()"<<ambassador.get_coins_player()<<endl;
-	// cout<<"captain.get_coins_player()"<<captain.get_coins_player()<<endl;
-	// cout<<"contessa.get_coins_player()"<<contessa.get_coins_player()<<endl;
+
 	players = game_1.players();
 	/*
 		prints:

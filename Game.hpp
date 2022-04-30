@@ -15,25 +15,18 @@ class Game{
         vector<string> players_name;
         unsigned long size;
         unsigned long current_player;
-        // static int k;
-        // Player player_play; //the player that is turn to play 
 
     public:
         Game();
-        // Game(Game &game);
         string turn();
         vector<string> players();
-        string winner(Game game);
+        static string winner(Game const &game);
         void add_player(string &n);
-        unsigned long get_current_player();
+        unsigned long get_current_player() const;
         void set_current_player();
         void remove_player(string const &player);
-        vector<string> get_players_name();
+        vector<string> get_players_name() const;
         void set_players_name(size_t i, string &name);
-        // map<string, string> get_players_dismissed();
-        // string role();
-        // int coins();
-        // friend std::ostream& operator<<(ostream& os,const Player &player);
 
 };
 }
