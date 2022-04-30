@@ -13,10 +13,11 @@ using namespace coup;
             {
                 player1.set_coins_player(-1);
                 player2.set_coins_player(1);
+            
+                this->_game.set_current_player();
+            }else{
+                throw runtime_error("its not" + this->_name + "turn");
             }
-            this->_game.set_current_player();
-        }else{
-            throw runtime_error("its not" + this->_name + "turn");
         }
         this->last_operation = "transfer";
     }

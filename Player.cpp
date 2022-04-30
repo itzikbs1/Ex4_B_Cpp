@@ -19,7 +19,7 @@ using namespace coup;
     //     this->_game.add_player(name);
     // }
     void Player::income(){
-        if(this->_game.turn() == this->_name){
+        if(this->_game.turn() == this->_name && this->coins_player < ten){
             this->coins_player++;
             this->last_operation = "income";
             this->_game.set_current_player();
@@ -29,7 +29,7 @@ using namespace coup;
 }
     void Player::foreign_aid(){ // if the player blocked when he take foreign_aid its turn finish
         
-        if(this->_game.turn() == this->_name){
+        if(this->_game.turn() == this->_name && this->coins_player < ten){
         this->coins_player+=2;
         this->last_operation = "foreign_aid";
         this->_game.set_current_player();
