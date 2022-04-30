@@ -17,11 +17,16 @@ using namespace coup;
         this->last_operation = "block";
     }
     void Duke::tax(){
-        if(this->coins_player<ten){
-            this->coins_player+=3;
-            this->_game.set_current_player();
+        if(this->_name == this->_game.turn()){
+            if(this->coins_player<ten){
+                this->coins_player+=3;
+                this->_game.set_current_player();
+            }else{
+                this->_game.set_current_player();
+                throw runtime_error("you have more than 10 coins");
+            }
         }else{
-            throw runtime_error("you have more than 10 coins");
+            throw runtime_error("its not your turn");
         }
         this->last_operation = "tax";
     }

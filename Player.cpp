@@ -19,34 +19,51 @@ using namespace coup;
     //     this->_game.add_player(name);
     // }
     void Player::income(){
-        if(this->_game.turn() == this->_name && this->coins_player < ten){
+        if(this->_game.turn() == this->_name){
+            if(this->coins_player < ten){
             this->coins_player++;
             this->last_operation = "income";
             this->_game.set_current_player();
+            }else{
+                this->_game.set_current_player();
+                throw runtime_error("you have too much money");
+            }
         }else{
+            // this->_game.set_current_player();
             throw runtime_error("its not " + this->_name + " turn to play");
         }
-}
+    }
     void Player::foreign_aid(){ // if the player blocked when he take foreign_aid its turn finish
         
-        if(this->_game.turn() == this->_name && this->coins_player < ten){
-        this->coins_player+=2;
-        this->last_operation = "foreign_aid";
-        this->_game.set_current_player();
-        
+        if(this->_game.turn() == this->_name){
+            if(this->coins_player < ten){
+                this->coins_player+=2;
+                this->last_operation = "foreign_aid";
+                this->_game.set_current_player();
+            }else{
+                this->_game.set_current_player();
+                throw runtime_error("you have too much money");
+            }
         }else{
+            // this->_game.set_current_player();
             throw runtime_error("its not " + this->_name + " turn to play");
         }
     }
     void Player::coup(Player &player){
         if(this->_game.turn() == this->_name){
-            this->coins_player-=seven;
-            this->_game.remove_player(player._name);
-            this->last_operation = "coup";
-            this->dismissed_player = "-" + player.get_name();
-            this->_game.set_current_player();
+            if(this->coins_player>=seven){
+                this->coins_player-=seven;
+                this->_game.remove_player(player._name);
+                this->last_operation = "coup";
+                this->dismissed_player = "-" + player.get_name();
+                this->_game.set_current_player();
         }else{
+            this->_game.set_current_player();
             throw runtime_error("you dont have enough money");
+        }
+        }else{
+            // this->_game.set_current_player();
+            throw runtime_error("its not your turn");
         }
     }
     // string Player::winner(Game game){

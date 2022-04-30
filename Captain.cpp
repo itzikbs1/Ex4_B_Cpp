@@ -29,17 +29,20 @@ using namespace coup;
         this->last_operation = "block";
     }
     void Captain::steal(Player &player){
-        if(this->_name == this->_game.turn() && this->coins_player<ten){
-            this->money_before_operation = this->coins_player;
-            if(player.get_coins_player() == 1){
-                player.set_coins_player(-1);
-                this->set_coins_player(1);
-            }else if(player.get_coins_player() >= 2){
-                player.set_coins_player(-2);
-                this->set_coins_player(2);
-            }else{
-                throw runtime_error("you cant steal from" + player.get_name() + "is dont have any money");
-            }
+        if(this->_name == this->_game.turn()){
+            if(this->coins_player<ten){
+                this->money_before_operation = this->coins_player;
+                if(player.get_coins_player() == 1){
+                    player.set_coins_player(-1);
+                    this->set_coins_player(1);
+                }else if(player.get_coins_player() >= 2){
+                    player.set_coins_player(-2);
+                    this->set_coins_player(2);
+                }else{
+                    this->_game.set_current_player();
+                    throw runtime_error("you cant steal from" + player.get_name() + "is dont have any money");
+                }
+                }
             this->dismissed_player = player.get_name();
             this->_game.set_current_player();
             this->stolen_player = &player;

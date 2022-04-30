@@ -19,8 +19,11 @@ using namespace coup;
                 string new_name = "-" + player.get_name();
                 this->set_dismissed_player(new_name);
                 this->_game.set_current_player();
+            }else if(this->_game.turn() == this->_name){
+                this->_game.set_current_player();
+                throw runtime_error("you dont have enough coins");
             }else{
-                throw runtime_error("you dont have enough coins or its not your turn");
+                throw runtime_error("its not your turn");
             }
             this->last_operation = "coup";
     }

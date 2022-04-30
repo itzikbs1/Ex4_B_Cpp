@@ -8,18 +8,21 @@ using namespace std;
 using namespace coup;
 
     void Ambassador::transfer(Player &player1, Player &player2){
-        if(this->_name == this->_game.turn() && this->coins_player<ten){
-            if (player1.get_coins_player()>0)
+        if(this->_name == this->_game.turn()){
+            if (player1.get_coins_player()>0 && this->coins_player<ten)
             {
                 player1.set_coins_player(-1);
-                player2.set_coins_player(1);
-            
-                this->_game.set_current_player();
+                player2.set_coins_player(1); 
             }else{
+                this->_game.set_current_player();
+                throw runtime_error("He dont have enough money");
+            }
+            }else{
+                // this->_game.set_current_player();
                 throw runtime_error("its not" + this->_name + "turn");
             }
-        }
-        this->last_operation = "transfer";
+            this->_game.set_current_player();
+            this->last_operation = "transfer";
     }
     void Ambassador::block(Player &player){
         int stolen = 0;
