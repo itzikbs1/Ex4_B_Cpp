@@ -9,6 +9,9 @@ using namespace coup;
 
 
     void Duke::block(Player &player){
+        if(!this->_game.get_game_strated()){
+                this->_game.set_game_strated(true);
+            }
         if(player.get_last_operation() == "foreign_aid" && player.get_name() != this->_game.turn()){
             player.set_coins_player(-2); // need to check if the coins player need to be greather then 0 ???
         }else{
@@ -17,6 +20,9 @@ using namespace coup;
         this->last_operation = "block";
     }
     void Duke::tax(){
+        if(!this->_game.get_game_strated()){
+                this->_game.set_game_strated(true);
+            }
         if(this->_name == this->_game.turn()){
             if(this->coins_player<ten){
                 this->coins_player+=3;

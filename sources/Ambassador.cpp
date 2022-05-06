@@ -9,6 +9,9 @@ using namespace coup;
 
     void Ambassador::transfer(Player &player1, Player &player2){
         if(this->_name == this->_game.turn()){
+            if(!this->_game.get_game_strated()){
+                this->_game.set_game_strated(true);
+            }
             if (player1.get_coins_player()>0 && this->get_coins_player()<ten)
             {
                 player1.set_coins_player(-1);
@@ -26,6 +29,9 @@ using namespace coup;
     }
     void Ambassador::block(Player &player){
         int stolen = 0;
+        if(!this->_game.get_game_strated()){
+                this->_game.set_game_strated(true);
+            }
         // cout<<"player.get_last_operation() "<<player.get_last_operation()<<endl;
         // cout<<"player.get_player_role() "<<player.get_player_role()<<endl;
         if (player.get_last_operation() == "steal" && player.get_player_role() == "Captain" && player.get_name() != this->_game.turn())

@@ -9,6 +9,9 @@ using namespace coup;
 
 
     void Assassin::coup(Player &player){
+        if(!this->_game.get_game_strated()){
+                this->_game.set_game_strated(true);
+            }
             if(this->get_coins_player()>=seven && this->_game.turn() == this->_name){
                 this->money_before_operation = this->coins_player;
                 Player::coup(player);

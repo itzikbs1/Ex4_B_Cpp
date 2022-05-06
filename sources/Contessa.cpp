@@ -9,14 +9,19 @@ using namespace coup;
 
 
     void Contessa::coup(Player &player){
+        if(!this->_game.get_game_strated()){
+                this->_game.set_game_strated(true);
+            }
         Player::coup(player);
         this->last_operation = "coup";
     }
     void Contessa::block(Player &player){
-
+        if(!this->_game.get_game_strated()){
+                this->_game.set_game_strated(true);
+            }
         if(player.get_last_operation() == "coup" && player.get_player_role() == "Assassin" && player.get_name() != this->_game.turn()){
             // cout<<"player.get_money_before_operation() "<<player.get_money_before_operation()<<endl;
-            if(player.get_money_before_operation()>=7){
+            if(player.get_money_before_operation()>=seven){
                 throw runtime_error("its invalid block you cant do it " + this->_name);
             }
             // cout<<"18"<<endl;

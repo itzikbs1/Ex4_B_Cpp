@@ -21,7 +21,7 @@ class Game{
         Game();
         string turn();
         vector<string> players();
-        string winner();
+        string winner() const;
         void add_player(string &n);
         unsigned long get_current_player() const;
         void set_current_player();

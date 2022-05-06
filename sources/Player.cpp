@@ -25,20 +25,21 @@ using namespace coup;
     //         this->last_operation = "";
     //         this->money_before_operation = 0;
     //     }
-    Player::Player(Game &game, string &name) : _game(game), _name(name){
-            if(this->_game.players().size() < 6 ){//&& !this->_game.get_game_strated()){
-                // cout<<"name "<<name<<endl;
-                // this->_game = game;
-                // this->_name = name;
-                game.add_player(name);
-                this->coins_player = 0;
-                this->dismissed_player = "";
-                this->last_operation = "";
-                this->money_before_operation = 0;
-            }else{
-                throw runtime_error("cant add more players.");
-            }
-        }
+    // Player::Player(Game &game, string &name) {//: _game(game), _name(name){
+    //         if(this->_game.players().size() < 6 ){//&& !this->_game.get_game_strated()){
+    //             // cout<<"name "<<name<<endl;
+    //             this->_game = game;
+    //             this->_name = name;
+    //             game.add_player(name);
+    //             this->coins_player = 0;
+    //             this->dismissed_player = "";
+    //             this->last_operation = "";
+    //             this->money_before_operation = 0;
+    //         }
+    //         else{
+    //             throw runtime_error("cant add more players.");
+    //         }
+    //     }
     void Player::income(){
         if(this->_game.turn() == this->_name && this->_game.players().size() > 1){
             if(this->coins_player < ten){
@@ -53,9 +54,9 @@ using namespace coup;
             // this->_game.set_current_player();
             throw runtime_error("its not " + this->_name + " turn to play.");
         }
-        // if(!this->_game.get_game_strated()){
-        //     this->_game.set_game_strated(true); 
-        // }
+        if(!this->_game.get_game_strated()){
+            this->_game.set_game_strated(true); 
+        }
     }
     void Player::foreign_aid(){ // if the player blocked when he take foreign_aid its turn finish
         
@@ -72,9 +73,9 @@ using namespace coup;
             // this->_game.set_current_player();
             throw runtime_error("its not " + this->_name + " turn to play");
         }
-        // if(!this->_game.get_game_strated()){
-        //     this->_game.set_game_strated(true); 
-        // }
+        if(!this->_game.get_game_strated()){
+            this->_game.set_game_strated(true); 
+        }
     }
     void Player::coup(Player &player){
         if(this->_game.turn() == this->_name && still_in_game(player)){

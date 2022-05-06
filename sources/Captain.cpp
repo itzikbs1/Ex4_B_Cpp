@@ -9,6 +9,9 @@ using namespace coup;
 
 
     void Captain::block(Player &player){
+        if(!this->_game.get_game_strated()){
+                this->_game.set_game_strated(true);
+            }
         int stolen = 0;
             if (player.get_last_operation() == "steal" && player.get_player_role() == "captain" && player.get_name() != this->_game.turn())
             {
@@ -29,6 +32,9 @@ using namespace coup;
         this->last_operation = "block";
     }
     void Captain::steal(Player &player){
+        if(!this->_game.get_game_strated()){
+                this->_game.set_game_strated(true);
+            }
         if(this->_name == this->_game.turn()){
             if(this->coins_player<ten){
                 this->money_before_operation = this->coins_player;

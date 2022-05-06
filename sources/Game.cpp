@@ -13,6 +13,7 @@ using namespace coup;
         // cout<<"heyG.c"<<this<<endl;
         this->size=0;
         this->current_player=0;
+        this->game_started = false;
         // for (size_t i = 0; i < 5; i++)
         // {
         //     this->players_name.push_back("");
@@ -45,7 +46,7 @@ using namespace coup;
     //     return os;
     // }
 
-    string Game::winner(){
+    string Game::winner() const{
         string winn;
         int Participants=0;
         if(this->get_players_name().size() == 1){
