@@ -9,7 +9,7 @@ class Captain : public Player{
 
     public:
         Captain(Game &game, string name) : Player(game, name){
-            this->player_role = "captain";
+            this->player_role = "Captain";
         }
         void block(Player &player);
         void steal(Player &player);

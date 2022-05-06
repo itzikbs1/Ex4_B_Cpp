@@ -24,6 +24,10 @@ using namespace coup;
 
     // }
     string Game::turn(){
+        // cout<<"this->players_name.at((this->current_player%this->players_name.size()))[0]"<<this->players_name.at((this->current_player%this->players_name.size()))[0]<<endl;
+        while(this->players_name.at((this->current_player%this->players_name.size()))[0] == '-'){
+            this->current_player++;
+        }
         string player_name = this->players_name.at((this->current_player%this->players_name.size()));
         return player_name;
     }
@@ -41,18 +45,26 @@ using namespace coup;
     //     return os;
     // }
 
-    string Game::winner(Game const &game){
+    string Game::winner(){
         string winn;
         int Participants=0;
-        for (size_t i = 1; i < game.get_players_name().size(); i++)
+        if(this->get_players_name().size() == 1){
+             throw runtime_error("the game still running");
+        }
+        for (size_t i = 0; i < this->get_players_name().size(); i++)
         {
-            if(*game.get_players_name()[i].begin() != '-'){
+            // cout<<"Game "<<this<<endl;
+            // cout<<"*this->get_players_name()[i].begin() "<<*this->get_players_name()[i].begin()<<endl;
+            if(*this->get_players_name()[i].begin() != '-'){
+                // cout<<"55"<<endl;
                 Participants++;
-                winn = game.get_players_name()[i];
+                winn = this->get_players_name()[i];
             }
         }if(Participants>1){
             throw runtime_error("the game still running");
         }
+
+        // cout<<"Participants "<<Participants<<endl;
         return winn;
     }
     void Game::add_player(string &n){
@@ -63,6 +75,12 @@ using namespace coup;
     }
     vector<string> Game::get_players_name() const{
         return players_name;
+    }
+    bool Game::get_game_strated() const{
+        return game_started;
+    }
+    void Game::set_game_strated(bool ans){
+        game_started = ans;
     }
     void Game::set_current_player(){
         this->current_player++;

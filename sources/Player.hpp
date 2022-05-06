@@ -22,13 +22,21 @@ public:
         Player *stolen_player;
 
     public:
-        Player(Game &game, string &name) : _game(game), _name(name){
-            game.add_player(name);
-            this->coins_player = 0;
-            this->dismissed_player = "";
-            this->last_operation = "";
-            this->money_before_operation = 0;
-        }
+    Player(Game &game, string &name);
+        // Player(Game &game, string &name) : _game(game), _name(name){
+        //     if(this->_game.players().size() < 6 ){//&& !this->_game.get_game_strated()){
+        //         // cout<<"name "<<name<<endl;
+        //         // this->_game = game;
+        //         // this->_name = name;
+        //         game.add_player(name);
+        //         this->coins_player = 0;
+        //         this->dismissed_player = "";
+        //         this->last_operation = "";
+        //         this->money_before_operation = 0;
+        //     }else{
+        //         throw runtime_error("cant add more players.");
+        //     }
+        // }
         void income();
         void foreign_aid();
         virtual void coup(Player &player);
@@ -44,5 +52,7 @@ public:
         void set_dismissed_player(string &name);
         static string change_name(string &name); 
         friend std::ostream& operator<<(ostream& os,const Player &player);
+
+        bool still_in_game(Player &player);
 };
 }

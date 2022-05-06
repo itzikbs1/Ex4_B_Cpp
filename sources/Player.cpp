@@ -18,8 +18,29 @@ using namespace coup;
     //     // this->_game.players_name.push_back(name);
     //     this->_game.add_player(name);
     // }
+    // Player(Game &game, string &name) : _game(game), _name(name){
+    //         game.add_player(name);
+    //         this->coins_player = 0;
+    //         this->dismissed_player = "";
+    //         this->last_operation = "";
+    //         this->money_before_operation = 0;
+    //     }
+    Player::Player(Game &game, string &name) : _game(game), _name(name){
+            if(this->_game.players().size() < 6 ){//&& !this->_game.get_game_strated()){
+                // cout<<"name "<<name<<endl;
+                // this->_game = game;
+                // this->_name = name;
+                game.add_player(name);
+                this->coins_player = 0;
+                this->dismissed_player = "";
+                this->last_operation = "";
+                this->money_before_operation = 0;
+            }else{
+                throw runtime_error("cant add more players.");
+            }
+        }
     void Player::income(){
-        if(this->_game.turn() == this->_name){
+        if(this->_game.turn() == this->_name && this->_game.players().size() > 1){
             if(this->coins_player < ten){
             this->coins_player++;
             this->last_operation = "income";
@@ -30,27 +51,33 @@ using namespace coup;
             }
         }else{
             // this->_game.set_current_player();
-            throw runtime_error("its not " + this->_name + " turn to play");
+            throw runtime_error("its not " + this->_name + " turn to play.");
         }
+        // if(!this->_game.get_game_strated()){
+        //     this->_game.set_game_strated(true); 
+        // }
     }
     void Player::foreign_aid(){ // if the player blocked when he take foreign_aid its turn finish
         
-        if(this->_game.turn() == this->_name){
+        if(this->_game.turn() == this->_name && this->_game.players().size() > 1){
             if(this->coins_player < ten){
                 this->coins_player+=2;
                 this->last_operation = "foreign_aid";
                 this->_game.set_current_player();
             }else{
-                this->_game.set_current_player();
+                // this->_game.set_current_player();
                 throw runtime_error("you have too much money");
             }
         }else{
             // this->_game.set_current_player();
             throw runtime_error("its not " + this->_name + " turn to play");
         }
+        // if(!this->_game.get_game_strated()){
+        //     this->_game.set_game_strated(true); 
+        // }
     }
     void Player::coup(Player &player){
-        if(this->_game.turn() == this->_name){
+        if(this->_game.turn() == this->_name && still_in_game(player)){
             if(this->coins_player>=seven){
                 this->coins_player-=seven;
                 this->_game.remove_player(player._name);
@@ -58,7 +85,7 @@ using namespace coup;
                 this->dismissed_player = "-" + player.get_name();
                 this->_game.set_current_player();
         }else{
-            this->_game.set_current_player();
+            // this->_game.set_current_player();
             throw runtime_error("you dont have enough money");
         }
         }else{
@@ -109,4 +136,16 @@ using namespace coup;
     }
     ostream& operator<<(ostream& os,const Player &player){
         return os;
+    }
+    bool Player::still_in_game(Player &player){
+        if(player.get_name()[0] != '-'){
+            vector<string> vec = player._game.get_players_name();
+            for (size_t i = 0; i < vec.size(); i++)
+            {
+                if(player.get_name() == vec[i]){
+                    return true;
+                }
+            }
+        }
+        return false;
     }

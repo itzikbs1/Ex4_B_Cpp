@@ -9,7 +9,7 @@ class Assassin : public Player{
 
     public:
         Assassin(Game &game, string name) : Player(game, name){
-            this->player_role = "assassin";
+            this->player_role = "Assassin";
         }
         void coup(Player &player);
 };
