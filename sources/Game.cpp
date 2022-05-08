@@ -10,22 +10,11 @@ using namespace coup;
 
 
     Game::Game(){
-        // cout<<"heyG.c"<<this<<endl;
         this->size=0;
         this->current_player=0;
         this->game_started = false;
-        // for (size_t i = 0; i < 5; i++)
-        // {
-        //     this->players_name.push_back("");
-        //     this->size++;
-        // }
-        // cout<<"9G.c"<<endl;
     }
-    // Game::Game(Game game){
-
-    // }
     string Game::turn(){
-        // cout<<"this->players_name.at((this->current_player%this->players_name.size()))[0]"<<this->players_name.at((this->current_player%this->players_name.size()))[0]<<endl;
         while(this->players_name.at((this->current_player%this->players_name.size()))[0] == '-'){
             this->current_player++;
         }
@@ -42,9 +31,6 @@ using namespace coup;
         }
         return now_play;
     }
-    // ostream& operator<<(ostream& os,const Game &game){
-    //     return os;
-    // }
 
     string Game::winner() const{
         string winn;
@@ -54,18 +40,13 @@ using namespace coup;
         }
         for (size_t i = 0; i < this->get_players_name().size(); i++)
         {
-            // cout<<"Game "<<this<<endl;
-            // cout<<"*this->get_players_name()[i].begin() "<<*this->get_players_name()[i].begin()<<endl;
             if(*this->get_players_name()[i].begin() != '-'){
-                // cout<<"55"<<endl;
                 Participants++;
                 winn = this->get_players_name()[i];
             }
         }if(Participants>1){
             throw runtime_error("the game still running");
         }
-
-        // cout<<"Participants "<<Participants<<endl;
         return winn;
     }
     void Game::add_player(string &n){

@@ -24,8 +24,7 @@ using namespace coup;
                 string new_name = "-" + player.get_name();
                 this->set_dismissed_player(new_name);
                 this->_game.set_current_player();
-            }else if(this->_game.turn() == this->_name && this->coins_player<3){//} && still_in_game(player)){
-                // this->_game.set_current_player();
+            }else if(this->_game.turn() == this->_name && this->coins_player<3){
                 throw runtime_error("you dont have enough coins");
             }else{
                 throw runtime_error("its not your turn");

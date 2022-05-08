@@ -1,4 +1,4 @@
-#pragma once//need this?
+#pragma once
 #include <iostream>
 #include <stdlib.h>
 #include <string>
@@ -8,10 +8,7 @@ using namespace std;
 namespace coup{
 class Game{
 
-// static unsigned long k;
-
     protected:
-        // map<string, string> players_dismissed;
         vector<string> players_name;
         unsigned long size;
         unsigned long current_player;

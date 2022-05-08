@@ -23,7 +23,6 @@ using namespace coup;
             {
                 if(this->_game.get_players_name()[i] == name_stolen){
                     player.stolen_player->set_coins_player(stolen);
-                    // player.stolen_player = ; //need this?
                 }
             }
         }else{

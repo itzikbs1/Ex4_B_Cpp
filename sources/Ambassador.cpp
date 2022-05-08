@@ -17,11 +17,9 @@ using namespace coup;
                 player1.set_coins_player(-1);
                 player2.set_coins_player(1); 
             }else{
-                // this->_game.set_current_player();
                 throw runtime_error("He dont have enough money");
             }
             }else{
-                // this->_game.set_current_player();
                 throw runtime_error("its not" + this->_name + "turn");
             }
             this->_game.set_current_player();
@@ -32,8 +30,6 @@ using namespace coup;
         if(!this->_game.get_game_strated()){
                 this->_game.set_game_strated(true);
             }
-        // cout<<"player.get_last_operation() "<<player.get_last_operation()<<endl;
-        // cout<<"player.get_player_role() "<<player.get_player_role()<<endl;
         if (player.get_last_operation() == "steal" && player.get_player_role() == "Captain" && player.get_name() != this->_game.turn())
         {
             stolen = player.get_coins_player() - player.get_money_before_operation();
@@ -44,7 +40,6 @@ using namespace coup;
             {
                 if(this->_game.get_players_name()[i] == name_stolen){
                     player.stolen_player->set_coins_player(stolen);
-                    // player.stolen_player = ; //need this?
                 }
             }
         }else{
